@@ -13,7 +13,9 @@
   "license": "MIT",
   "dependencies": {
     "axios": "^0.16.2",
-    "cheerio": "^1.0.0-rc.2"
+    "cheerio": "^1.0.0-rc.2",
+    "google-auth-library": "^0.10.0",
+    "googleapis": "^20.1.0"
   },
   "devDependencies": {
     "intelli-espower-loader": "^1.0.1",
