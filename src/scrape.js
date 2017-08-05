@@ -10,7 +10,6 @@ class EventScheduleScraper {
   }
   async findSchedule() {
     const res = await axios.get(this.endpoint);
-    console.log(res.data)
     return this.dateFinder(res.data);
   }
 }
@@ -33,9 +32,9 @@ class Comitia extends EventScheduleScraper {
   }
 }
 
-async function scraper() {
+async function scrape() {
   const comitia = await new Comitia().findSchedule();
-  // console.log(comitia);
+  return [...comitia];
 }
 
-module.exports = { scraper, Comitia };
+module.exports = { scrape, Comitia };
