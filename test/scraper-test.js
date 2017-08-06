@@ -1,5 +1,5 @@
 const assert = require('power-assert').customize({ output: { maxDepth: 3 } });
-const { Comitia } = require('../src/scraper');
+const { Comitia } = require('../src/scrape');
 const comitiaHtml = require('./comitia-html');
 
 describe('scraper', () => {

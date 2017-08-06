@@ -59,4 +59,4 @@ class CalendarClient {
   }
 }
 
-module.exports = { CalendarClientFactory };
+module.exports = { CalendarClientFactory, CalendarClient };
