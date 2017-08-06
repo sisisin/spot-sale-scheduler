@@ -9,7 +9,7 @@ const clientSecretJson = require('./client-secret.json');
 
 // NOTE: If modifying these scopes, delete your previously saved credentials
 const SCOPES = ['https://www.googleapis.com/auth/calendar.readonly', 'https://www.googleapis.com/auth/calendar'];
-const TOKEN_DIR = path.join((process.env.HOME || process.env.HOMEPATH || process.env.USERPROFILE), '/.credentials/');
+const TOKEN_DIR = '.credentials/';
 const TOKEN_PATH = path.join(TOKEN_DIR, 'spot-sale-scheduler.json');
 
 const OAuth2ClientFactory = {
