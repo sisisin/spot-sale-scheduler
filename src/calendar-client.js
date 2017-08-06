@@ -16,8 +16,34 @@ class CalendarClient {
   }
 
   async register(schedules) {
-    const events = await this.listEvents(new Date());
-    events.find(e => console.log(e.summary));
+    const promises = schedules.map(async ({ name, date }) => {
+      const event = (await this.listEvents(date)).find(e => e.summary === name);
+      if (event) { return Promise.resolve(); }
+      return this.insertEvent(name, date);
+    });
+    return Promise.all(promises);
+  }
+
+  async insertEvent(name, targetDate) {
+    const resource = {
+      summary: name,
+      start: {
+        dateTime: new Date(targetDate.getFullYear(), targetDate.getMonth(), targetDate.getDate(), 10).toISOString(),
+        timeZone: 'Asia/Tokyo'
+      },
+      end: {
+        dateTime: new Date(targetDate.getFullYear(), targetDate.getMonth(), targetDate.getDate(), 11).toISOString(),
+        timeZone: 'Asia/Tokyo'
+      },
+
+    };
+    const config = {
+      auth: this.auth,
+      calendarId: 'primary',
+      resource
+    };
+
+    return this.googleClient.insertEvent(config).then(res => res.items);
   }
 
   async listEvents(targetDate) {
