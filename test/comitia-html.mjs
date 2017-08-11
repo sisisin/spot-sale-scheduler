@@ -1,4 +1,4 @@
-module.exports = `<!doctype html>
+export const comitiaHtml = `<!doctype html>
 <html> 
 <head>
 <meta charset="UTF-8">

@@ -1,18 +1,19 @@
-const fs = require('fs');
-const promisify = require('util').promisify;
+import fs from 'fs';
+import util from 'util';
+const promisify = util.promisify;
 const readFilePromise = promisify(fs.readFile);
-const readline = require('readline');
-const path = require('path');
-const google = require('googleapis');
-const googleAuth = require('google-auth-library');
-const clientSecretJson = require('./client-secret.json');
+import readline from 'readline';
+import path from 'path';
+import google from 'googleapis';
+import googleAuth from 'google-auth-library';
+import clientSecretJson from './client-secret.json';
 
 // NOTE: If modifying these scopes, delete your previously saved credentials
 const SCOPES = ['https://www.googleapis.com/auth/calendar.readonly', 'https://www.googleapis.com/auth/calendar'];
 const TOKEN_DIR = '.credentials/';
 const TOKEN_PATH = path.join(TOKEN_DIR, 'spot-sale-scheduler.json');
 
-const OAuth2ClientFactory = {
+export const OAuth2ClientFactory = {
   async create() {
     const clientSecret = clientSecretJson.installed.client_secret;
     const clientId = clientSecretJson.installed.client_id;
@@ -76,5 +77,3 @@ function storeToken(token) {
     });
   });
 }
-
-module.exports = { OAuth2ClientFactory };

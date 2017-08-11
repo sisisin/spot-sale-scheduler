@@ -1,6 +1,7 @@
-const assert = require('power-assert').customize({ output: { maxDepth: 3 } });
-const { Comitia } = require('../src/scrape');
-const comitiaHtml = require('./comitia-html');
+import powerAssert from 'power-assert';
+const assert = powerAssert.customize({ output: { maxDepth: 3 } });
+import { Comitia } from '../src/scrape';
+import { comitiaHtml } from './comitia-html';
 
 describe('scraper', () => {
   describe('Comitia#dateFinder', () => {

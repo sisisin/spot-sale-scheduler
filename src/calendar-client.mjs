@@ -1,7 +1,7 @@
-const { OAuth2ClientFactory } = require('./oauth2-client-factory');
-const { GoogleClientFactory } = require('./google-client');
+import { OAuth2ClientFactory } from './oauth2-client-factory';
+import { GoogleClientFactory } from './google-client';
 
-const CalendarClientFactory = {
+export const CalendarClientFactory = {
   async create() {
     const auth = await OAuth2ClientFactory.create();
     const googleClient = GoogleClientFactory.create();
@@ -9,7 +9,7 @@ const CalendarClientFactory = {
   }
 };
 
-class CalendarClient {
+export class CalendarClient {
   constructor(googleClient, auth) {
     this.googleClient = googleClient;
     this.auth = auth;
@@ -58,5 +58,3 @@ class CalendarClient {
     return this.googleClient.listEvents(config).then(res => res.items);
   }
 }
-
-module.exports = { CalendarClientFactory, CalendarClient };

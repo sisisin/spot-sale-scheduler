@@ -1,5 +1,5 @@
-const axios = require('axios');
-const cheerio = require('cheerio');
+import axios from 'axios';
+import cheerio from 'cheerio';
 
 class EventScheduleScraper {
   get endpoint() {
@@ -14,7 +14,7 @@ class EventScheduleScraper {
   }
 }
 
-class Comitia extends EventScheduleScraper {
+export class Comitia extends EventScheduleScraper {
   get endpoint() { return 'https://www.comitia.co.jp/html/schedule.html'; }
   dateFinder(dom) {
     const findOneScheduleFromSection = (section) => {
@@ -32,9 +32,7 @@ class Comitia extends EventScheduleScraper {
   }
 }
 
-async function scrape() {
+export async function scrape() {
   const comitia = await new Comitia().findSchedule();
   return [...comitia];
 }
-
-module.exports = { scrape, Comitia };

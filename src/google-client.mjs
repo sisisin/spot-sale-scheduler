@@ -1,10 +1,10 @@
-const google = require('googleapis');
+import google from 'googleapis';
 
-const GoogleClientFactory = {
+export const GoogleClientFactory = {
   create() { return new GoogleClient(google, 'v3'); }
 };
 
-class GoogleClient {
+export class GoogleClient {
   constructor(google, apiVersion) {
     this.google = google;
     this.apiVersion = apiVersion;
@@ -28,5 +28,3 @@ class GoogleClient {
     });
   }
 }
-
-module.exports = { GoogleClientFactory, GoogleClient };

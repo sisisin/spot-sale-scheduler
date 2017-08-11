@@ -1,5 +1,5 @@
-const { scrape } = require('./scrape');
-const { CalendarClientFactory } = require('./calendar-client');
+import { scrape } from './scrape';
+import { CalendarClientFactory } from './calendar-client';
 
 async function main() {
   const schedules = await scrape();
