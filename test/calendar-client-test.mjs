@@ -1,5 +1,6 @@
-const assert = require('power-assert').customize({ output: { maxDepth: 3 } });
-const { CalendarClient } = require('../src/calendar-client');
+import powerAssert from 'power-assert';
+const assert = powerAssert.customize({ output: { maxDepth: 3 } });
+import { CalendarClient } from '../src/calendar-client';
 
 describe('CalendarClient', () => {
   describe('register', () => {
