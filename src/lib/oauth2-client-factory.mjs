@@ -6,7 +6,7 @@ import readline from 'readline';
 import path from 'path';
 import google from 'googleapis';
 import googleAuth from 'google-auth-library';
-import clientSecretJson from './client-secret.json';
+import clientSecretJson from '../client-secret.json';
 
 // NOTE: If modifying these scopes, delete your previously saved credentials
 const SCOPES = ['https://www.googleapis.com/auth/calendar.readonly', 'https://www.googleapis.com/auth/calendar'];
@@ -48,9 +48,9 @@ async function getNewToken(oauth2Client) {
     output: process.stdout
   });
   return new Promise((resolve, reject) => {
-    rl.question('Enter the code from that page here: ', function (code) {
+    rl.question('Enter the code from that page here: ', (code) => {
       rl.close();
-      oauth2Client.getToken(code, function (err, token) {
+      oauth2Client.getToken(code, (err, token) => {
         if (err) {
           console.log('Error while trying to retrieve access token', err);
           return reject(err);

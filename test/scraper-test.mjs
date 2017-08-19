@@ -1,6 +1,6 @@
 import powerAssert from 'power-assert';
 const assert = powerAssert.customize({ output: { maxDepth: 3 } });
-import { Comitia } from '../src/scrape';
+import { Comitia } from '../src/lib/scrape';
 import { comitiaHtml } from './comitia-html';
 
 describe('scraper', () => {

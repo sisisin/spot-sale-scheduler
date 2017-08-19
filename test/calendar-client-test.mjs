@@ -1,6 +1,6 @@
 import powerAssert from 'power-assert';
 const assert = powerAssert.customize({ output: { maxDepth: 3 } });
-import { CalendarClient } from '../src/calendar-client';
+import { CalendarClient } from '../src/lib/calendar-client';
 
 describe('CalendarClient', () => {
   describe('register', () => {
