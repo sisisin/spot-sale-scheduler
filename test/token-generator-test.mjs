@@ -3,7 +3,7 @@ import fs from 'fs';
 import powerAssert from 'power-assert';
 const assert = powerAssert.customize({ output: { maxDepth: 3 } });
 import sinon from 'sinon';
-import { TokenGenerator } from '../src/lib/oauth2-token-util';
+import { TokenGenerator } from '../src/lib/token-generator';
 
 describe('TokenGenerator', () => {
   let consoleLogMock = () => { };
