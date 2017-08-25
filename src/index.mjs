@@ -1,5 +1,5 @@
-import { scrape } from './scrape';
-import { CalendarClientFactory } from './calendar-client';
+import { scrape } from './lib/scrape';
+import { CalendarClientFactory } from './lib/calendar-client';
 
 async function main() {
   const schedules = await scrape();

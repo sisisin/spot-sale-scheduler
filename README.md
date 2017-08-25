@@ -2,17 +2,16 @@
 
 register spot sale schedule cli(e.g. COMITIA, Comic Market...).
 
-# build
+# preparation
 
-```bash
-npm install
-docker build --tag sisisin/spot-sale-scheduler ./
-```
+you need to create `client-secret.json` at google and put into `./src` directory.
+
+and run `npm run cred`
 
 # run
 
 ```bash
-docker run --rm sisisin/spot-sale-scheduler
+npm run register
 ```
 
 # todo
