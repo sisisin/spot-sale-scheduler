@@ -6,6 +6,7 @@ import googleAuth from 'google-auth-library';
 import clientSecretJson from '../client-secret.json';
 import { TOKEN_PATH } from './constant';
 import { GoogleClientFactory } from './google-client';
+import { CredentialLoaderFactory } from './credential-loader';
 
 export const CalendarClientFactory = {
   async create() {
@@ -14,8 +15,7 @@ export const CalendarClientFactory = {
     const redirectUrl = clientSecretJson.installed.redirect_uris[0];
     const auth = new googleAuth();
     const oauth2Client = new auth.OAuth2(clientId, clientSecret, redirectUrl);
-    const token = await readFilePromise(TOKEN_PATH);
-    oauth2Client.credentials = JSON.parse(token);
+    oauth2Client.credentials = await CredentialLoaderFactory.create().load();
 
     const googleClient = GoogleClientFactory.create();
     return new CalendarClient(googleClient, oauth2Client);
