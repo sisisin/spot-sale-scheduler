@@ -35,3 +35,21 @@ export class CredentialLoader {
     };
   }
 }
+
+export class ClientSecretLoader {
+  constructor(clientSecretPath = '../client-secret.json') {
+    this.clientSecretPath = clientSecretPath;
+  }
+
+  async load() {
+    let token;
+    try {
+      token = JSON.parse(await readFilePromise(this.clientSecretPath));
+    } catch (err) {
+      if (err.code !== 'ENOENT') { throw err; }
+      if (!process.env.CLIENT_SECRET) { throw err; }
+      token = JSON.parse(process.env.CLIENT_SECRET);
+    }
+    return token;
+  }
+}

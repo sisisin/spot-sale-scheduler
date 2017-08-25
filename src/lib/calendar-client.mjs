@@ -3,13 +3,13 @@ import util from 'util';
 const readFilePromise = util.promisify(fs.readFile);
 import googleAuth from 'google-auth-library';
 
-import clientSecretJson from '../client-secret.json';
 import { TOKEN_PATH } from './constant';
 import { GoogleClientFactory } from './google-client';
-import { CredentialLoaderFactory } from './credential-loader';
+import { CredentialLoaderFactory, ClientSecretLoader } from './credential-loader';
 
 export const CalendarClientFactory = {
   async create() {
+    const clientSecretJson = await (new ClientSecretLoader()).load();
     const clientSecret = clientSecretJson.installed.client_secret;
     const clientId = clientSecretJson.installed.client_id;
     const redirectUrl = clientSecretJson.installed.redirect_uris[0];

@@ -1,7 +1,7 @@
 import fs from 'fs';
 import readline from 'readline';
 import { TOKEN_PATH, TOKEN_DIR } from './constant';
-import clientSecretJson from '../client-secret.json';
+import { ClientSecretLoader } from './credential-loader';
 import googleAuth from 'google-auth-library';
 
 // NOTE: If modifying these scopes, delete your previously saved credentials
@@ -22,6 +22,7 @@ export class TokenGenerator {
   }
 
   async generateToken() {
+    const clientSecretJson = await (new ClientSecretLoader()).load();
     const clientSecret = clientSecretJson.installed.client_secret;
     const clientId = clientSecretJson.installed.client_id;
     const redirectUrl = clientSecretJson.installed.redirect_uris[0];
