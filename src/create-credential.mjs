@@ -1,7 +1,8 @@
-import { generateToken } from './lib/oauth2-token-util';
+import { TokenGeneratorFactory } from './lib/oauth2-token-util';
 
 async function main() {
-  await generateToken();
+  const tokenGenerator = await TokenGeneratorFactory.create();
+  await tokenGenerator.generateToken();
 }
 
 main().catch(err => console.log(err));
