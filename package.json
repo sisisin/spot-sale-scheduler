@@ -6,7 +6,8 @@
   "scripts": {
     "test": "mocha -r intelli-espower-loader -r @std/esm ./test/**/*.mjs",
     "start": "node -r @std/esm ./src/index.mjs",
-    "watch": "mocha -r intelli-espower-loader -r @std/esm -w ./test/**/*.mjs"
+    "watch": "mocha -w -r intelli-espower-loader -r @std/esm --watch-extensions mjs ./test/**/*.mjs",
+    "cred": "node -r @std/esm ./src/create-credential.mjs"
   },
   "keywords": [],
   "author": "",
