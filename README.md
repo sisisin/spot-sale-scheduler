@@ -13,6 +13,3 @@ and run `npm run cred`
 ```bash
 npm run register
 ```
-
-# todo
-- implement Comic Market registration

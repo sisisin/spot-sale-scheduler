@@ -32,7 +32,28 @@ export class Comitia extends EventScheduleScraper {
   }
 }
 
+export class Comiket extends EventScheduleScraper {
+  get endpoint() { return 'http://www.comiket.co.jp/info-a/index.html'; }
+  dateFinder(dom) {
+    const $ = cheerio.load(dom);
+    const [name, term] = Array.from($('table').find('table table tr').slice(1).find('td'))
+      .map(cElm => cheerio.load(cElm).text());
+
+    const toHalfChar = s => String.fromCharCode(s.charCodeAt(0) - 65248);
+    const [_, yearPart, month, startDate, endDate] = term
+      .replace(/[０-９]/g, toHalfChar)
+      .match(/(\d*)年(\d*)月(\d*)日.*?(\d*)日/)
+      .map(str => Number(str));
+    const year = 2000 + yearPart;
+
+    return new Array(endDate - startDate + 1).fill(0).map((_, i) => {
+      return { name, date: new Date(year, month - 1, startDate + i) };
+    });
+  }
+}
+
 export async function scrape() {
   const comitia = await new Comitia().findSchedule();
-  return [...comitia];
+  const comiket = await new Comiket().findSchedule();
+  return [...comitia, ...comiket];
 }
